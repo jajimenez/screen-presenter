@@ -18,6 +18,7 @@ CAMERA_ACCESS_DENIED_MESSAGE = (
 
 class MainWindow(QMainWindow):
     def __init__(self, parent: QWidget | None = None):
+        """Initialize the main window."""
         super().__init__(parent)
 
         # Window title and size
@@ -70,6 +71,7 @@ class MainWindow(QMainWindow):
             self.restoreGeometry(geometry)
 
     def _update_cameras(self):
+        """Update the list of available cameras."""
         # Query the currently available cameras
         self._cameras = QMediaDevices.videoInputs()
 
@@ -83,6 +85,7 @@ class MainWindow(QMainWindow):
         self._select_camera(0)
 
     def _select_camera(self, index: int):
+        """Select the camera at the given index."""
         self._message_label.hide()
 
         # Stop and release the previously selected camera
@@ -113,6 +116,7 @@ class MainWindow(QMainWindow):
         self._message_label.show()
 
     def closeEvent(self, event: QCloseEvent):
+        """Handle the window close event."""
         # Save the window position and size before closing
         QSettings().setValue("window/geometry", self.saveGeometry())
 
