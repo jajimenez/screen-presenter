@@ -75,7 +75,8 @@ class MainWindow(QMainWindow):
         # Query the currently available cameras
         self._cameras = QMediaDevices.videoInputs()
 
-        # Block signals so repopulating the combo box does not trigger _select_camera repeatedly
+        # Block signals so repopulating the combo box does not trigger _select_camera
+        # repeatedly
         self._camera_combo.blockSignals(True)
         self._camera_combo.clear()
         self._camera_combo.addItems([d.description() for d in self._cameras])
@@ -93,7 +94,8 @@ class MainWindow(QMainWindow):
             self._camera.stop()
             self._camera = None
 
-        # Create, route to the capture session, and start the camera at the selected index
+        # Create, route to the capture session, and start the camera at the selected
+        # index
         if index >= 0 and index < len(self._cameras):
             self._camera = QCamera(self._cameras[index], self)
             self._camera.errorOccurred.connect(self._show_camera_error)
@@ -103,7 +105,10 @@ class MainWindow(QMainWindow):
             # Qt only logs a warning, without emitting an error, when access is denied
             app = QApplication.instance()
 
-            if app and app.checkPermission(QCameraPermission()) == Qt.PermissionStatus.Denied:
+            if (
+                app and
+                app.checkPermission(QCameraPermission()) == Qt.PermissionStatus.Denied
+            ):
                 self._show_message(CAMERA_ACCESS_DENIED_MESSAGE)
 
     def _show_camera_error(self, error: QCamera.Error, error_text: str):
