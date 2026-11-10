@@ -1,4 +1,4 @@
-from screen_presenter import main
+from screen_presenter.app import main
 
 if __name__ == "__main__":
     main()

@@ -22,7 +22,7 @@ dev = [
 ]
 
 [project.scripts]
-screen-presenter = "screen_presenter:main"
+screen-presenter = "screen_presenter.app:main"
 
 [tool.hatch.version]
 source = "vcs"
