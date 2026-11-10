@@ -1,4 +1,5 @@
 from PySide6.QtCore import QCameraPermission, QSettings, Qt
+from PySide6.QtGui import QCloseEvent
 from PySide6.QtMultimedia import QCamera, QMediaCaptureSession, QMediaDevices
 from PySide6.QtMultimediaWidgets import QVideoWidget
 from PySide6.QtWidgets import (
@@ -16,7 +17,7 @@ CAMERA_ACCESS_DENIED_MESSAGE = (
 )
 
 class MainWindow(QMainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
 
         # Window title and size
@@ -81,7 +82,7 @@ class MainWindow(QMainWindow):
         # The first camera is selected by default
         self._select_camera(0)
 
-    def _select_camera(self, index):
+    def _select_camera(self, index: int):
         self._message_label.hide()
 
         # Stop and release the previously selected camera
@@ -102,15 +103,16 @@ class MainWindow(QMainWindow):
             if app and app.checkPermission(QCameraPermission()) == Qt.PermissionStatus.Denied:
                 self._show_message(CAMERA_ACCESS_DENIED_MESSAGE)
 
-    def _show_camera_error(self, error, error_text):
+    def _show_camera_error(self, error: QCamera.Error, error_text: str):
         """Show an error message when the camera encounters an error."""
         self._show_message(error_text)
 
-    def _show_message(self, text):
+    def _show_message(self, text: str):
+        """Show a message in the message label."""
         self._message_label.setText(text)
         self._message_label.show()
 
-    def closeEvent(self, event):
+    def closeEvent(self, event: QCloseEvent):
         # Save the window position and size before closing
         QSettings().setValue("window/geometry", self.saveGeometry())
 
