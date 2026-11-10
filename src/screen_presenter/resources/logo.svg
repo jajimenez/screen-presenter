@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title id="title">Screen Presenter</title>
+  <rect width="256" height="256" rx="56" fill="#0b4d2c"/>
+  <g transform="translate(0 -6)">
+    <!-- Presentation screen -->
+    <rect x="36" y="52" width="184" height="118" rx="12" fill="#ffffff"/>
+    <!-- User -->
+    <circle cx="162" cy="92" r="20" fill="#0b4d2c"/>
+    <path d="M126 152C126 130 142 119 162 119C182 119 198 130 198 152Z" fill="#0b4d2c"/>
+    <!-- Chart -->
+    <rect x="54" y="124" width="16" height="28" rx="3" fill="#0b4d2c"/>
+    <rect x="76" y="104" width="16" height="48" rx="3" fill="#0b4d2c"/>
+    <rect x="98" y="82" width="16" height="70" rx="3" fill="#0b4d2c"/>
+    <!-- Stand -->
+    <g stroke="#ffffff" stroke-width="10" stroke-linecap="round" fill="none">
+      <path d="M128 170V198"/>
+      <path d="M128 198L104 224"/>
+      <path d="M128 198L152 224"/>
+    </g>
+  </g>
+</svg>
