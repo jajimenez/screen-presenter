@@ -1,0 +1,41 @@
+[project]
+name = "screen-presenter"
+description = "Desktop application to display the presenter when recording the screen"
+readme = "README.md"
+authors = [
+    { name = "Jose A. Jimenez" }
+]
+license = "MIT"
+requires-python = ">=3.15"
+classifiers = [
+    "Programming Language :: Python :: 3.15"
+]
+dynamic = ["version"]  # Version is generated from the Git tag (hatch-vcs)
+dependencies = [
+    "PySide6-Essentials>=6.10.0,<6.12.0"
+]
+
+[dependency-groups]
+dev = [
+    "ruff",
+    "pytest"
+]
+
+[project.scripts]
+screen-presenter = "screen_presenter:main"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+local_scheme = "no-local-version"  # PyPI rejects local versions such as "+1234"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/screen_presenter/_version.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
