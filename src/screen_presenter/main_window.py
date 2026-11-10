@@ -30,7 +30,7 @@ class MainWindow(QMainWindow):
 
         # Window title and size
         self.setWindowTitle(QApplication.applicationDisplayName())
-        self.setMinimumSize(100, 100)
+        self.setMinimumSize(150, 150)
         self.resize(400, 300)
 
         # Camera discovery
@@ -77,15 +77,18 @@ class MainWindow(QMainWindow):
         self._capture_session.setVideoOutput(self._video_widget)
 
         # Stack the selector above the video preview
-        layout = QVBoxLayout()
-        layout.addWidget(self._controls)
-        layout.addWidget(self._message_label)
-        layout.addWidget(self._video_widget, 1)
+        self._layout = QVBoxLayout()
+        self._layout.addWidget(self._controls)
+        self._layout.addWidget(self._message_label)
+        self._layout.addWidget(self._video_widget, 1)
 
         # Attach the layout to the window
         central_widget = QWidget()
-        central_widget.setLayout(layout)
+        central_widget.setLayout(self._layout)
         self.setCentralWidget(central_widget)
+
+        # Style margins are only resolved once the layout belongs to a widget
+        self._default_margins = self._layout.contentsMargins()
 
         # Fill the combo box and start the first camera
         self._update_cameras()
@@ -150,12 +153,14 @@ class MainWindow(QMainWindow):
         """Hide the window bar and camera controls, keeping only the video widget."""
         self._presentation_mode = True
         self._controls.hide()
+        self._layout.setContentsMargins(0, 0, 0, 0)
         self._toggle_bar(False)
 
     def _exit_presentation_mode(self):
         """Show the window bar and camera controls."""
         self._presentation_mode = False
         self._controls.show()
+        self._layout.setContentsMargins(self._default_margins)
         self._toggle_bar(True)
 
     def _toggle_bar(self, enabled: bool):
