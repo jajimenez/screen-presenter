@@ -6,4 +6,5 @@ class MainWindow(QMainWindow):
         super().__init__(parent)
 
         self.setWindowTitle("Screen Presenter")
+        self.setMinimumSize(100, 100)
         self.resize(400, 300)
