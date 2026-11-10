@@ -37,6 +37,9 @@ class MainWindow(QMainWindow):
 
         # Video widget for displaying the camera image
         self._video_widget = QVideoWidget()
+        self._video_widget.setAspectRatioMode(
+            Qt.AspectRatioMode.KeepAspectRatioByExpanding
+        )
 
         # Message shown when the camera cannot be used, such as when access is denied
         self._message_label = QLabel()
