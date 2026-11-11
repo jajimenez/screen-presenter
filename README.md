@@ -1,6 +1,7 @@
 # Screen Presenter
 
-Desktop application that shows your camera as a presenter overlay while you record your screen.
+Desktop application that shows your camera as a presenter overlay, so you can record
+your screen with any tool.
 
 ## How to work in the project
 
