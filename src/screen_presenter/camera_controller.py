@@ -89,7 +89,7 @@ class CameraController(QObject):
 
         self._camera.stop()
         # The PySide6 stub omits None, which Qt accepts to detach the camera
-        self._capture_session.setCamera(None)  # pyright: ignore[reportArgumentType]
+        self._capture_session.setCamera(None)  # type: ignore[reportArgumentType]
         self._camera.deleteLater()
         self._camera = None
 
