@@ -51,6 +51,7 @@ your screen with any tool.
 sources = ["src/screen_presenter"]
 icon = "packaging/icon"
 permission.camera = "Screen Presenter needs camera access to display your camera video on screen."
+permission.microphone = "Screen Presenter doesn't record audio. MacOS asks for this when listing camera devices, so you can safely deny it."
 
 # The app only uses QtCore, QtGui, QtWidgets, QtMultimedia and QtMultimediaWidgets (plus the
 # libraries they load: QtNetwork, QtOpenGL, QtConcurrent, QtDBus, QtSvg and FFmpeg), so the
