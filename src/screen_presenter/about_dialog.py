@@ -16,10 +16,11 @@ from screen_presenter.platform_support import get_logo_path
 INFO_TEXT = (
     "<h3>{}</h3>"
     "<p>Version {}</p>"
-    "<p>Shows your camera as a presenter overlay while you record your screen.</p>"
+    "<p>Shows your camera as a presenter overlay, so you can record your screen with any tool.</p>"
     "<p>Copyright © 2026 Jose A. Jimenez</p>"
     "<p>Licensed under the MIT License.</p>"
 )
+
 
 class AboutDialog(QDialog):
     def __init__(self, parent: QWidget | None = None) -> None:
@@ -48,7 +49,9 @@ class AboutDialog(QDialog):
             INFO_TEXT.format(QApplication.applicationDisplayName(), version)
         )
         info_label.setWordWrap(True)
-        info_label.setTextInteractionFlags(Qt.TextInteractionFlag.TextBrowserInteraction)
+        info_label.setTextInteractionFlags(
+            Qt.TextInteractionFlag.TextBrowserInteraction
+        )
         info_label.setOpenExternalLinks(True)
 
         # Layout for the content (logo and information)

@@ -3,6 +3,10 @@ import sys
 from pathlib import Path
 
 RESOURCES_PATH = Path(__file__).parent / "resources"
+
+# Never shown to the user, but Qt requires a non-empty value before it requests camera
+# access when running the unbundled application (e.g. python -m). The bundled
+# application takes its text from permission.camera in pyproject.toml.
 CAMERA_USAGE_DESCRIPTION = (
     "Screen Presenter needs camera access to display your camera video on screen."
 )
