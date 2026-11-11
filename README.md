@@ -10,7 +10,7 @@ your screen with any tool.
 - A camera
 
 On Linux, the following system libraries are required: `libegl1`, `libgl1`,
-`libdbus-1-3`, `libfontconfig1`, `libxkbcommon0`, `libxkbcommon-x11-0`,
+`libdbus-1-3`, `libfontconfig1`, `libpulse0`, `libxkbcommon0`, `libxkbcommon-x11-0`,
 `libxcb-cursor0`, `libxcb-icccm4`, `libxcb-image0`, `libxcb-keysyms1`, `libxcb-randr0`,
 `libxcb-render-util0`, `libxcb-shape0`, `libxcb-xinerama0` and `libxcb-xkb1`.
 
@@ -35,7 +35,7 @@ powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```bash
 git clone https://github.com/jajimenez/screen-presenter.git
 cd screen-presenter
-uv sync --group dev
+uv sync
 ```
 
 ### Run the application
@@ -67,7 +67,7 @@ uv run ruff format .
 
 ### Build the application
 
-The application is packaged with [Briefcase](https://briefcase.readthedocs.io/):
+The application is packaged with Briefcase:
 
 ```bash
 uv sync --group package
@@ -89,9 +89,8 @@ or later.
 
 ### Versioning and releases
 
-The version is taken from the Git tag by [hatch-vcs](https://github.com/ofek/hatch-vcs),
-and `src/screen_presenter/_version.py` is generated automatically, so don't edit it by
-hand.
+The version is taken from the Git tag by hatch-vcs and
+`src/screen_presenter/_version.py` is generated automatically, so don't edit it by hand.
 
 To create a release, tag the commit and push the tag:
 
