@@ -67,7 +67,7 @@ uv run ruff format .
 
 ### Build the application
 
-The application is packaged with [Briefcase](https://briefcase.readthedocs.io/):
+The application is packaged with Briefcase:
 
 ```bash
 uv sync --group package
@@ -89,9 +89,8 @@ or later.
 
 ### Versioning and releases
 
-The version is taken from the Git tag by [hatch-vcs](https://github.com/ofek/hatch-vcs),
-and `src/screen_presenter/_version.py` is generated automatically, so don't edit it by
-hand.
+The version is taken from the Git tag by hatch-vcs and
+`src/screen_presenter/_version.py` is generated automatically, so don't edit it by hand.
 
 To create a release, tag the commit and push the tag:
 
