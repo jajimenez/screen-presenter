@@ -13,7 +13,7 @@ from PySide6.QtWidgets import (
 from screen_presenter._version import version
 from screen_presenter.platform_support import get_logo_path
 
-ABOUT_TEXT = (
+INFO_TEXT = (
     "<h3>{}</h3>"
     "<p>Version {}</p>"
     "<p>Shows your camera as a presenter overlay while you record your screen.</p>"
@@ -45,7 +45,7 @@ class AboutDialog(QDialog):
 
         # Application information
         info_label = QLabel(
-            ABOUT_TEXT.format(QApplication.applicationDisplayName(), version)
+            INFO_TEXT.format(QApplication.applicationDisplayName(), version)
         )
         info_label.setWordWrap(True)
         info_label.setTextInteractionFlags(Qt.TextInteractionFlag.TextBrowserInteraction)
