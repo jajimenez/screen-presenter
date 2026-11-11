@@ -1,5 +1,5 @@
 from PySide6.QtCore import QPoint, QSettings, Qt
-from PySide6.QtGui import QCloseEvent, QKeyEvent, QMouseEvent
+from PySide6.QtGui import QAction, QCloseEvent, QKeyEvent, QMouseEvent
 from PySide6.QtMultimedia import QMediaCaptureSession
 from PySide6.QtMultimediaWidgets import QVideoWidget
 from PySide6.QtWidgets import (
@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from screen_presenter.about_dialog import AboutDialog
 from screen_presenter.camera_controller import CameraController
 
 GEOMETRY_SETTING = "window/geometry"
@@ -32,6 +33,7 @@ class MainWindow(QMainWindow):
         self.resize(400, 300)
 
         self._build_ui()
+        self._build_menu()
 
         self._camera_controller = CameraController(self._capture_session, self)
         self._camera_controller.cameras_changed.connect(self._show_cameras)
@@ -95,6 +97,20 @@ class MainWindow(QMainWindow):
 
         # Style margins are only resolved once the layout belongs to a widget
         self._default_margins = self._layout.contentsMargins()
+
+    def _build_menu(self) -> None:
+        """Create the menu bar."""
+        help_menu = self.menuBar().addMenu("&Help")
+
+        # The About role moves the action to the application menu on macOS
+        about_action = QAction(f"About {QApplication.applicationDisplayName()}", self)
+        about_action.setMenuRole(QAction.MenuRole.AboutRole)
+        about_action.triggered.connect(self._show_about)
+        help_menu.addAction(about_action)
+
+    def _show_about(self) -> None:
+        """Open the about dialog."""
+        AboutDialog(self).exec()
 
     def _restore_settings(self) -> None:
         """Restore the window position and size if they were previously saved."""

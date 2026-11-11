@@ -1,6 +1,6 @@
 [project]
 name = "screen-presenter"
-description = "Desktop application to display the presenter when recording the screen"
+description = "Desktop application that shows your camera as a presenter overlay while you record your screen"
 readme = "README.md"
 authors = [
     { name = "Jose A. Jimenez" }
