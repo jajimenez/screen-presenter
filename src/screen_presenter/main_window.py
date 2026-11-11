@@ -36,6 +36,9 @@ class MainWindow(QMainWindow):
         self._camera_controller = CameraController(self._capture_session, self)
         self._camera_controller.cameras_changed.connect(self._show_cameras)
         self._camera_controller.error_changed.connect(self._show_message)
+        self._camera_controller.selected_camera_available_changed.connect(
+            self._present_button.setEnabled
+        )
         # The system prompt returns focus to the terminal, hiding the window behind it
         self._camera_controller.permission_answered.connect(self._bring_to_front)
         self._camera_combo.currentIndexChanged.connect(self._camera_controller.select)
@@ -52,6 +55,8 @@ class MainWindow(QMainWindow):
 
         # Button to enter presentation mode
         self._present_button = QPushButton("Present")
+        # Enabled once the selected camera is running
+        self._present_button.setEnabled(False)
         self._present_button.clicked.connect(self._enter_presentation_mode)
 
         # Layout for the controls (camera combo box and present button)

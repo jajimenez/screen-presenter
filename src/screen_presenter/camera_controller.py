@@ -32,6 +32,9 @@ class CameraController(QObject):
     # Emitted after the user answers the system permission prompt
     permission_answered = Signal()
 
+    # True when the selected camera is running and can be presented
+    selected_camera_available_changed = Signal(bool)
+
     def __init__(
         self,
         capture_session: QMediaCaptureSession,
@@ -69,6 +72,7 @@ class CameraController(QObject):
         """Select the camera at the given index."""
         self.error_changed.emit("")
         self._release_camera()
+        self.selected_camera_available_changed.emit(False)
 
         if not 0 <= index < len(self._cameras):
             return
@@ -115,6 +119,7 @@ class CameraController(QObject):
                 self._camera.errorOccurred.connect(self._on_camera_error)
                 self._capture_session.setCamera(self._camera)
                 self._camera.start()
+                self.selected_camera_available_changed.emit(True)
         elif status == Qt.PermissionStatus.Denied:
             self.error_changed.emit(CAMERA_ACCESS_DENIED_MESSAGE)
 
@@ -124,4 +129,5 @@ class CameraController(QObject):
 
     def _on_camera_error(self, error: QCamera.Error, error_text: str) -> None:
         """Report an error encountered by the camera."""
+        self.selected_camera_available_changed.emit(False)
         self.error_changed.emit(error_text)
