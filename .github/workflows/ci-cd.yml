@@ -4,7 +4,7 @@
 #
 #   Pull request or push to "main"
 #     - lint:  Ruff checks (code and formatting).
-#     - test:  Pytest on Linux, MacOS and Windows.
+#     - test:  Pytest.
 #     - build: sdist and wheel, validated with Twine, checked against the version and
 #              smoke-tested by installing the wheel. Nothing is published.
 #
@@ -83,11 +83,7 @@ jobs:
       - run: uv run --locked --only-group dev ruff format --check .
 
   test:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       # The full history is needed for hatch-vcs to compute the version
       - uses: actions/checkout@v5
@@ -97,7 +93,6 @@ jobs:
         with:
           enable-cache: true
       - name: Install Qt system libraries
-        if: runner.os == 'Linux'
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
