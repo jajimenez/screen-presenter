@@ -35,7 +35,7 @@ powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```bash
 git clone https://github.com/jajimenez/screen-presenter.git
 cd screen-presenter
-uv sync --group dev
+uv sync
 ```
 
 ### Run the application
