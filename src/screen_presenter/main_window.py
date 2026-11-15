@@ -146,6 +146,7 @@ class MainWindow(QMainWindow):
         """Hide the window bar and camera controls, keeping only the video widget."""
         self._presentation_mode = True
         self._controls.hide()
+        self.menuBar().hide()
         self._layout.setContentsMargins(0, 0, 0, 0)
         self._toggle_bar(False)
 
@@ -153,6 +154,7 @@ class MainWindow(QMainWindow):
         """Show the window bar and camera controls."""
         self._presentation_mode = False
         self._controls.show()
+        self.menuBar().show()
         self._layout.setContentsMargins(self._default_margins)
         self._toggle_bar(True)
 
