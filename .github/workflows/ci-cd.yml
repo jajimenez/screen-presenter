@@ -12,8 +12,8 @@
 #     - Same checks as above.
 #     - installer: the Briefcase installers are built only to validate that they can be
 #                  built (they are kept as workflow artifacts and are not released).
-#     - publish-testpypi: the sdist and wheel are published to Test PyPI, only if all the
-#                         previous jobs succeed.
+#     - publish-test-pypi: the sdist and wheel are published to Test PyPI, only if all the
+#                          previous jobs succeed.
 #
 #   Release tag (vA.B.C, e.g. v1.2.3)
 #     - Same checks as above, including the installers.
@@ -29,7 +29,7 @@
 # hatch-vcs, so a release is made by pushing a tag.
 #
 # Requirements:
-#   - "testpypi" and "pypi" GitHub environments, each with a trusted publisher configured
+#   - "test-pypi" and "pypi" GitHub environments, each with a trusted publisher configured
 #     on Test PyPI / PyPI for this repository and this workflow file name (ci-cd.yml). No
 #     API tokens are used.
 #   - The installers are only ad-hoc signed (not signed with a developer certificate, and
@@ -180,11 +180,11 @@ jobs:
           path: out/*
           if-no-files-found: error
 
-  publish-testpypi:
+  publish-test-pypi:
     needs: [context, lint, test, build, installer]
     if: needs.context.outputs.kind == 'rc'
     runs-on: ubuntu-latest
-    environment: testpypi
+    environment: test-pypi
     permissions:
       id-token: write  # Trusted publishing (OIDC)
     steps:
