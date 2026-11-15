@@ -6,6 +6,7 @@ authors = [
     { name = "Jose A. Jimenez" }
 ]
 license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.14"
 classifiers = [
     "Programming Language :: Python :: 3.14"
