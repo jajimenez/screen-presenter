@@ -7,9 +7,9 @@ authors = [
 ]
 license = "MIT"
 license-files = ["LICENSE"]
-requires-python = ">=3.14"
+requires-python = ">=3.13"
 classifiers = [
-    "Programming Language :: Python :: 3.14"
+    "Programming Language :: Python :: 3.13"
 ]
 dynamic = ["version"]  # Version is generated from the Git tag (hatch-vcs)
 dependencies = [
@@ -406,7 +406,7 @@ cleanup_paths = [
     "**/PySide6/QtXml*.abi3.so",
 ]
 
-# The Linux package uses the system Python, so the target must provide Python 3.14 or later
+# The Linux package uses the system Python, so the target must provide Python 3.13 or later
 [tool.briefcase.app.screen-presenter.linux.system.debian]
 system_runtime_requires = [
     "libegl1",

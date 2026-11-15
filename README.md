@@ -5,7 +5,7 @@ your screen with any tool.
 
 ## Requirements
 
-- Python 3.14 or later (`uv` installs it automatically)
+- Python 3.13 or later (`uv` installs it automatically)
 - macOS 13 or later, Windows or Linux
 - A camera
 
@@ -83,7 +83,7 @@ uv run briefcase package
   `uv run briefcase package --adhoc-sign` for local builds that are not signed with a
   developer identity.
 
-The Linux package uses the system Python, so the target system must provide Python 3.14
+The Linux package uses the system Python, so the target system must provide Python 3.13
 or later.
 
 ### Versioning and releases

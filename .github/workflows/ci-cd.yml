@@ -20,7 +20,7 @@
 #     - publish-pypi: the sdist and wheel are published to PyPI.
 #     - github-release: a GitHub release is created, with generated notes and these assets:
 #         - sdist and wheel;
-#         - installers: Debian package (Ubuntu 26.04), MacOS DMG and Windows MSI;
+#         - installers: Debian package (Debian 13), MacOS DMG and Windows MSI;
 #         - source code archives (zip and tar.gz), which GitHub adds automatically.
 #
 # Any other tag only runs lint, test and build.
@@ -116,7 +116,7 @@ jobs:
           ls dist/screen_presenter-"$expected"-*.whl dist/screen_presenter-"$expected".tar.gz
       - name: Smoke-test the wheel
         run: |
-          uv venv --python 3.14 "$RUNNER_TEMP/smoke"
+          uv venv --python 3.13 "$RUNNER_TEMP/smoke"
           uv pip install --python "$RUNNER_TEMP/smoke" --no-deps dist/*.whl
           "$RUNNER_TEMP/smoke/bin/python" -c "import screen_presenter; print(screen_presenter.__version__)"
       - uses: actions/upload-artifact@v4
@@ -133,10 +133,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # The Debian package uses the system Python, so the target must provide Python 3.14
+          # The Debian package uses the system Python, so the target must provide Python 3.13
           - os: ubuntu-latest
             label: linux-x64
-            briefcase_args: linux system --target ubuntu:26.04
+            briefcase_args: linux system --target debian:trixie
           - os: macos-latest
             label: macos-universal
             briefcase_args: macOS
